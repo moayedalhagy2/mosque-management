@@ -12,7 +12,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
+use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -20,6 +20,20 @@ return Application::configure(basePath: dirname(__DIR__))
         api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+         then: function () {
+            // Load additional route files here
+            Route::middleware(['api'])
+                ->prefix('api/auth')
+                ->group(base_path('routes/groups/auth.php'));
+
+            Route::middleware(['api', /*'auth:sanctum'*/])
+                ->prefix('api')
+                ->group(base_path('routes/groups/client.php'));
+
+            Route::middleware(['api', /*'auth:sanctum'*/])
+                ->prefix('api/dashboard')
+                ->group(base_path('routes/groups/dashboard.php'));
+        }
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
