@@ -1,6 +1,9 @@
 <?php
 
 use App\Exceptions\ApiLevelException;
+use App\Http\Middleware\ForceJsonAcceptHeaderMiddleware;
+use App\Http\Middleware\SetAppLocalMiddleware;
+use App\Http\Middleware\TokenFromCookieMiddleware;
 use App\Services\ExceptionService;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -26,17 +29,21 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api/auth')
                 ->group(base_path('routes/groups/auth.php'));
 
-            Route::middleware(['api', /*'auth:sanctum'*/])
+            Route::middleware(['api', 'auth:sanctum'])
                 ->prefix('api')
                 ->group(base_path('routes/groups/client.php'));
 
-            Route::middleware(['api', /*'auth:sanctum'*/])
+            Route::middleware(['api',  'auth:sanctum'  ])
                 ->prefix('api/dashboard')
                 ->group(base_path('routes/groups/dashboard.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+    $middleware->api(prepend: [
+            ForceJsonAcceptHeaderMiddleware::class,
+            SetAppLocalMiddleware::class,
+            TokenFromCookieMiddleware::class
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
        $exceptions->dontReport([
