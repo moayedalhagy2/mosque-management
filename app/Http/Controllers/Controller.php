@@ -28,4 +28,9 @@ abstract class Controller
             'data' => $data
         ], $httpCode);
     }
+
+    public function isList(): bool
+    {
+        return request('list') == 1;
+    }
 }
