@@ -3,8 +3,10 @@
  
 use Illuminate\Support\Facades\Route;
  
-use App\Http\Controllers\Dashboard\UserController;
-  use App\Http\Controllers\BranchController;
+ 
+use App\Http\Controllers\BranchController;
+
+use App\Http\Controllers\UserController ;
 
 // Route::prefix('/users')
 //     ->controller(UserController::class)
@@ -20,6 +22,8 @@ use App\Http\Controllers\Dashboard\UserController;
 
 
 
+Route::get('/profile', [UserController::class, 'profile']);
+
 Route::prefix('/branches')
     ->controller(BranchController::class)
     ->group(function () {
@@ -29,3 +33,4 @@ Route::prefix('/branches')
         // Route::post('/{id}', 'update');
         // Route::delete('/{id}', 'destroy');
     });
+
