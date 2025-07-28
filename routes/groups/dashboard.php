@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
  
  
 use App\Http\Controllers\BranchController;
-
+use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\UserController ;
 
 // Route::prefix('/users')
@@ -32,5 +32,14 @@ Route::prefix('/branches')
         // Route::get('/{id}', 'show');
         // Route::post('/{id}', 'update');
         // Route::delete('/{id}', 'destroy');
+    });
+Route::prefix('/districts')
+    ->controller(DistrictController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{item}', 'show');
+        Route::put('/{item}', 'update');
+        Route::post('/', 'store');
+        Route::delete('/{item}', 'destroy');
     });
 
