@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\ApiLevelException;
+use App\Http\Middleware\CheckBranchMiddleware;
 use App\Http\Middleware\ForceJsonAcceptHeaderMiddleware;
 use App\Http\Middleware\SetAppLocalMiddleware;
 use App\Http\Middleware\TokenFromCookieMiddleware;
@@ -19,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
+        web: __DIR__ . '/../routes/web.php',
+        api: __DIR__ . '/../routes/api.php',
+        commands: __DIR__ . '/../routes/console.php',
         health: '/up',
-         then: function () {
+        then: function () {
             // Load additional route files here
             Route::middleware(['api'])
                 ->prefix('api/auth')
@@ -33,24 +34,27 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api')
                 ->group(base_path('routes/groups/client.php'));
 
-            Route::middleware(['api',  'auth:sanctum'  ])
+            Route::middleware(['api',  'auth:sanctum'])
                 ->prefix('api/dashboard')
                 ->group(base_path('routes/groups/dashboard.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware) {
-    $middleware->api(prepend: [
+        $middleware->api(prepend: [
             ForceJsonAcceptHeaderMiddleware::class,
             SetAppLocalMiddleware::class,
             TokenFromCookieMiddleware::class
         ]);
+        $middleware->alias([
+            'check.branch' => CheckBranchMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-       $exceptions->dontReport([
+        $exceptions->dontReport([
             ApiLevelException::class,
         ]);
 
-             $exceptions->render(function (Exception $exception, Request $request) {
+        $exceptions->render(function (Exception $exception, Request $request) {
 
 
             if ($request->is('api/*')) {
