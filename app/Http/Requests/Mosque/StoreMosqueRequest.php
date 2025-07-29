@@ -43,6 +43,7 @@ class StoreMosqueRequest extends FormRequest
             'category' => ['required', Rule::in(MosqueCategoryEnum::values())],
             'types' => ['required', 'array'],
             'types.*' => ['required', Rule::in(MosqueTypeEnum::values()), 'distinct'],
+            'description' => ['sometimes'],
             'latitude' => ['sometimes'],
             'longitude' => ['sometimes'],
 

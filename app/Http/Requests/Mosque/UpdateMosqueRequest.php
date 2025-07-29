@@ -43,6 +43,7 @@ class UpdateMosqueRequest extends FormRequest
             'category' => ['sometimes', Rule::in(MosqueCategoryEnum::values())],
             'types' => ['sometimes', 'array'],
             'types.*' => ['sometimes', Rule::in(MosqueTypeEnum::values()), 'distinct'],
+            'description' => ['sometimes'],
             'latitude' => ['sometimes'],
             'longitude' => ['sometimes'],
 

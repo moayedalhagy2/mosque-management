@@ -20,6 +20,7 @@ class Mosque extends Model
         'category',
         'current_status',
         'technical_status',
+        'description',
         'latitude',
         'longitude',
         'created_at',

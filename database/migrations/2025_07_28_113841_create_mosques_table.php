@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('category', MosqueCategoryEnum::values());
             $table->enum('current_status', MosqueBuildingStatusEnum::values());
             $table->enum('technical_status', MosqueConditionEnum::values());
+            $table->text('description')->nullable();
             // Location coordinates
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
