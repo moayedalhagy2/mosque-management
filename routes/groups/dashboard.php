@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,4 +65,18 @@ Route::prefix('/mosques')
         Route::get('/enums/category', 'categoryEnum');
         Route::get('/enums/technical-status', 'technicalStatusEnum');
         Route::get('/enums/type', 'typeEnum');
+    });
+
+
+Route::prefix('/workers')
+    ->controller(WorkerController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{item}', 'show');
+        Route::post('/{item}', 'update');
+        Route::post('/', 'store');
+        Route::delete('/{item}', 'destroy');
+
+        Route::get('/enums/job-titles', 'jobTitlesEnum');
+        Route::get('/enums/job-status', 'jobStatusEnum');
     });

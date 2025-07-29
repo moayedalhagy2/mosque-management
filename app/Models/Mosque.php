@@ -42,4 +42,10 @@ class Mosque extends Model
     {
         return $this->hasMany(MosqueType::class);
     }
+
+
+    public function workers(): HasMany
+    {
+        return $this->hasMany(Worker::class);
+    }
 }

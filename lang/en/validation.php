@@ -193,7 +193,7 @@ return [
     'unique_sku' => 'The SKU is already taken by another product or variant.',
     'cannot_purchase_directly' => 'You cannot purchase this product directly as it has variants.',
     'prevent_update_phone_if_login_system' => 'You cannot update your phone number when using the phone number login method.',
-
+    'max_worker_per_job_title' => 'No more than 5 workers with the same job title may be added to the same mosque',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
