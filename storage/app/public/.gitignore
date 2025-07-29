@@ -1,2 +1,7 @@
 *
 !.gitignore
+
+
+# Do not ignore the static-images directory
+!static-images/
+!static-images/** 
