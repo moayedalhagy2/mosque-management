@@ -1,12 +1,16 @@
 <?php
 
- 
+
 use Illuminate\Support\Facades\Route;
- 
- 
+
+
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\DistrictController;
-use App\Http\Controllers\UserController ;
+use App\Http\Controllers\MosquesController;
+use App\Http\Controllers\UserController;
+
+use App\Models\Mosque;
+
 
 // Route::prefix('/users')
 //     ->controller(UserController::class)
@@ -22,6 +26,8 @@ use App\Http\Controllers\UserController ;
 
 
 
+
+
 Route::get('/profile', [UserController::class, 'profile']);
 
 Route::prefix('/branches')
@@ -33,6 +39,8 @@ Route::prefix('/branches')
         // Route::post('/{id}', 'update');
         // Route::delete('/{id}', 'destroy');
     });
+
+
 Route::prefix('/districts')
     ->controller(DistrictController::class)
     ->group(function () {
@@ -43,3 +51,17 @@ Route::prefix('/districts')
         Route::delete('/{item}', 'destroy');
     });
 
+Route::prefix('/mosques')
+    ->controller(MosquesController::class)
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::get('/{item}', 'show');
+        Route::put('/{item}', 'update');
+        Route::post('/', 'store');
+        Route::delete('/{item}', 'destroy');
+
+        Route::get('/enums/current-status', 'currentStatusEnum');
+        Route::get('/enums/category', 'categoryEnum');
+        Route::get('/enums/technical-status', 'technicalStatusEnum');
+        Route::get('/enums/type', 'typeEnum');
+    });

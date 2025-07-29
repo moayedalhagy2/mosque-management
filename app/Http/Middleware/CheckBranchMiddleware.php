@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-
+//حاليا ماله اي دور وظيفي
 class CheckBranchMiddleware
 {
     /**
@@ -25,7 +25,7 @@ class CheckBranchMiddleware
 
         // إذا كان الطلب يتضمن branch_id تأكد أنه مطابق لفرع المستخدم
         if ($request->has('branch_id') && $request->branch_id != $user->branch_id) {
-            abort(403, 'Unauthorized action. (check branch middleware)');
+            abort(403, 'Unauthorized action you must use your branch only !');
         }
 
         return $next($request);

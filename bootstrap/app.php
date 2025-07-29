@@ -1,6 +1,7 @@
 <?php
 
 use App\Exceptions\ApiLevelException;
+
 use App\Http\Middleware\CheckBranchMiddleware;
 use App\Http\Middleware\ForceJsonAcceptHeaderMiddleware;
 use App\Http\Middleware\SetAppLocalMiddleware;
@@ -43,8 +44,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->api(prepend: [
             ForceJsonAcceptHeaderMiddleware::class,
             SetAppLocalMiddleware::class,
-            TokenFromCookieMiddleware::class
+            TokenFromCookieMiddleware::class,
+
+
         ]);
+
         $middleware->alias([
             'check.branch' => CheckBranchMiddleware::class,
         ]);

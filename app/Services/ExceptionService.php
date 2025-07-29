@@ -192,5 +192,31 @@ class ExceptionService
             details: [],
         );
     }
-    
+
+    public static function branchIdRequired()
+    {
+        $key = 'branch-id-required';
+
+        $trans_key = sprintf("%s.%s", self::ERROR_FILE, $key);
+
+        throw new ApiLevelException(
+            error_key: $key,
+            custom_message: __($trans_key),
+            code: Response::HTTP_BAD_REQUEST,
+            details: [],
+        );
+    }
+    public static function useYourBranchOnly()
+    {
+        $key = 'use-your-branch-only';
+
+        $trans_key = sprintf("%s.%s", self::ERROR_FILE, $key);
+
+        throw new ApiLevelException(
+            error_key: $key,
+            custom_message: __($trans_key),
+            code: Response::HTTP_FORBIDDEN,
+            details: [],
+        );
+    }
 }

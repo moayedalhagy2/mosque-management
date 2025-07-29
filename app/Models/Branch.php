@@ -20,4 +20,9 @@ class Branch extends Model
     {
         return $this->hasMany(District::class);
     }
+
+    public function mosques(): HasMany
+    {
+        return $this->hasMany(Mosque::class);
+    }
 }

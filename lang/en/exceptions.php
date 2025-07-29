@@ -15,5 +15,6 @@ return [
     'resend-mail-failed' => 'Failed to resend the activation code',
     'invalid-token' => 'Invalid or expired access token',
     'update-password-forbidden' => 'You cannot update your password as you logged in via an external service',
-     
+    'branch-id-required' => 'You do not belong to any branch. You must enter the branch id',
+    'use-your-branch-only' => 'You can only create records for your branch',
 ];
