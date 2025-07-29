@@ -22,7 +22,8 @@ class DistrictController extends Controller
                 'branch.name',
                 'branch.id',
             ])
-            ->allowedSorts(['id', 'created_at']);
+            ->allowedSorts(['id', 'created_at'])
+            ->withCount('mosques');
 
 
 
@@ -64,7 +65,7 @@ class DistrictController extends Controller
                 'string',
                 Rule::unique('districts')->where(function ($query) use ($request) {
                     return $query->where('branch_id', $request->branch_id);
-                }),  
+                }),
             ],
             'branch_id' => ['required', 'exists:branches,id', 'integer'], // Ensure branch_id exists
         ]);

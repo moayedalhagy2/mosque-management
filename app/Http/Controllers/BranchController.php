@@ -18,17 +18,16 @@ class BranchController extends Controller
                 AllowedFilter::exact('id'),
                 'name',
             ])
-            ->allowedSorts(['id', 'created_at']);
-            
-            
+            ->allowedSorts(['id', 'created_at'])
+            ->withCount(['districts', 'mosques']);
+
+
         if ($this->isList()) {
             // Return all data, only 'id' and 'name' attributes
-            $branches = $model->get(['id','name']);
-           return $this->successJson(BranchResource::collection($branches));
+            $branches = $model->get(['id', 'name']);
+            return $this->successJson(BranchResource::collection($branches));
         }
 
         return new WrapCollection($model->paginate($this->pageSize()), BranchResource::class);
     }
-    
-
 }
