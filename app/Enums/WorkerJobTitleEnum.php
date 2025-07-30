@@ -7,6 +7,7 @@ enum WorkerJobTitleEnum: string
     case PREACHER = 'خطیب';
     case MUEZZIN = 'مؤذن';
     case SERVANT = 'خادم';
+    case IMAM = 'إمام';
     case IMAM_PREACHER = 'إمام وخطیب';
     case IMAM_MUEZZIN = 'إمام ومؤذن';
     case MUEZZIN_SERVANT = 'مؤذن وخادم';

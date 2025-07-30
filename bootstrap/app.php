@@ -1,7 +1,8 @@
 <?php
 
+use App\Enums\RoleEnum;
 use App\Exceptions\ApiLevelException;
-
+use App\Helpers\RoleMiddleware;
 use App\Http\Middleware\CheckBranchMiddleware;
 use App\Http\Middleware\ForceJsonAcceptHeaderMiddleware;
 use App\Http\Middleware\IsActiveAccountMiddleware;
@@ -32,7 +33,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api/auth')
                 ->group(base_path('routes/groups/auth.php'));
 
-            Route::middleware(['api', 'auth:sanctum', 'is_active'])
+            Route::middleware(['api', 'auth:sanctum', 'is_active', RoleMiddleware::append(RoleEnum::FIELD_COMMITTEE)])
                 ->prefix('api')
                 ->group(base_path('routes/groups/client.php'));
 
@@ -82,9 +83,16 @@ return Application::configure(basePath: dirname(__DIR__))
                     ExceptionService::unauthorizedAction();
                 }
 
+                if ($exception instanceof Spatie\Permission\Exceptions\UnauthorizedException) {
+                    ExceptionService::unauthorizedAction();
+                }
+
                 if ($exception instanceof ValidationException) {
                     ExceptionService::validation($exception->validator->errors()->toArray());
                 }
+
+
+
 
                 if (
                     config('app.env') != 'local'
