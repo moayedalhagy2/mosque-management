@@ -24,7 +24,9 @@ class WrokerResource extends JsonResource
             "updated_at" => $this->mosque_id,
             "created_at" => $this->mosque_id,
             "image" =>  $this->getFirstMediaUrl(class_basename(Worker::class)),
-            'mosque' => new MosqueResource($this->whenLoaded('mosque'))
+            'mosque' => new MosqueResource($this->whenLoaded('mosque')),
+            'creator' => $this->whenLoaded('creator'),
+            'editor' => $this->whenLoaded('editor'),
         ];
     }
 }

@@ -9,6 +9,9 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Worker extends Model implements HasMedia
 {
     use InteractsWithMedia;
+
+    use \Mattiverse\Userstamps\Traits\Userstamps;
+
     public $fillable = [
         'name',
         'phone',

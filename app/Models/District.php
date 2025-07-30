@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class District extends Model
 {
+    use \Mattiverse\Userstamps\Traits\Userstamps;
 
     public $fillable = [
         "branch_id",

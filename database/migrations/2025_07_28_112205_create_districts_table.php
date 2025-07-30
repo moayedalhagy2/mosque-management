@@ -15,9 +15,10 @@ return new class extends Migration
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Branch::class)->constrained()->cascadeOnDelete();
-            $table->string('name',40);
-             
-            $table->unique(['branch_id','name'],'unique_district');
+            $table->string('name', 40);
+            $table->userstamps();
+
+            $table->unique(['branch_id', 'name'], 'unique_district');
         });
     }
 

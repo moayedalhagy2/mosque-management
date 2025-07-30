@@ -37,7 +37,7 @@ class MosquesController extends Controller
                 'types.type'
             ])
             ->allowedSorts(['id', 'created_at', 'category', 'current_status', 'technical_status'])
-            ->with(['branch', 'district', 'types']);
+            ->with(['branch', 'district', 'types', 'creator', 'editor']);
 
 
         return new WrapCollection($model->paginate($this->pageSize()), MosqueResource::class);
@@ -46,7 +46,8 @@ class MosquesController extends Controller
 
     public function show(Request $request, Mosque $item)
     {
-        $item->load(['branch', 'district', 'types']);
+        $item->load(['branch', 'district', 'types', 'creator', 'editor']);
+
         return $this->successJson(new MosqueResource($item));
     }
 

@@ -23,6 +23,7 @@ class DistrictController extends Controller
                 'branch.id',
             ])
             ->allowedSorts(['id', 'created_at'])
+            ->with(['creator', 'editor'])
             ->withCount('mosques');
 
 
@@ -39,6 +40,7 @@ class DistrictController extends Controller
 
     public function show(Request $request, District $item)
     {
+        $item->load(['creator', 'editor']);
 
         return $this->successJson(new DistrictResource($item));
     }

@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('password');
             $table->foreignIdFor(Branch::class)->nullable()->constrained()->restrictOnDelete();
             $table->timestamps();
+            $table->userstamps();
         });
 
-         
+
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();

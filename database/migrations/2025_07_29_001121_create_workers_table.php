@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->enum('job_status', WorkerJobStatusEnum::values())->nullable();
+            $table->userstamps();
             $table->timestamps();
         });
     }

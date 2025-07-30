@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Mosque extends Model
 {
 
+    use \Mattiverse\Userstamps\Traits\Userstamps;
+
     use \App\BranchScopeTrait;
 
     public $fillable = [

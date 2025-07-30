@@ -31,7 +31,7 @@ class WorkerController extends Controller
                 'mosque.id',
             ])
             ->allowedSorts(['id', 'created_at', 'job_title', 'job_status'])
-            ->with(['mosque']);
+            ->with(['mosque', 'creator', 'editor']);
 
 
         return new WrapCollection($model->paginate($this->pageSize()), WrokerResource::class);
@@ -40,7 +40,7 @@ class WorkerController extends Controller
 
     public function show(Request $request, Worker $item)
     {
-        $item->load(['mosque']);
+        $item->load(['mosque', 'creator', 'editor']);
 
         return $this->successJson(new WrokerResource($item));
     }

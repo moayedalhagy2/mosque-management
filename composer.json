@@ -13,7 +13,8 @@
         "spatie/laravel-medialibrary": "^11.10",
         "spatie/laravel-permission": "^6.10",
         "spatie/laravel-query-builder": "*",
-        "staudenmeir/belongs-to-through": "*"
+        "staudenmeir/belongs-to-through": "*",
+        "wildside/userstamps": "^3.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
