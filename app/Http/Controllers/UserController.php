@@ -12,8 +12,8 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        $user->load(['branch']);
 
+        $user->load(['branch', 'roles:id,name']);
         return $this->successJson(new UserResource($user));
     }
 }

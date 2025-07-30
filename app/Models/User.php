@@ -11,7 +11,9 @@ class User extends Authenticatable
 {
     use  HasApiTokens;
 
+    use \Spatie\Permission\Traits\HasRoles;
     use \Mattiverse\Userstamps\Traits\Userstamps;
+    protected $guard_name = 'sanctum';
     protected $fillable = [
         'name',
         'username',
