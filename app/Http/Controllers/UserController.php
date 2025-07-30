@@ -10,7 +10,10 @@ class UserController extends Controller
 
     public function profile(Request $request)
     {
+        $user = auth()->user();
 
-        return $this->successJson(new UserResource(auth()->user()));
+        $user->load(['branch']);
+
+        return $this->successJson(new UserResource($user));
     }
 }

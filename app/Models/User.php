@@ -16,11 +16,13 @@ class User extends Authenticatable
         'name',
         'username',
         'password',
+        'is_active'
     ];
 
 
     protected $hidden = [
         'password',
+        'branch_id'
 
     ];
 
@@ -28,8 +30,8 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-
             'password' => 'hashed',
+            'is_active' => 'boolean'
         ];
     }
 
