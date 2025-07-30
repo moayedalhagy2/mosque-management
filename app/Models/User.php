@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Laravel\Sanctum\HasApiTokens;
 
+
+
 class User extends Authenticatable
 {
     use  HasApiTokens;
@@ -14,11 +16,13 @@ class User extends Authenticatable
     use \Spatie\Permission\Traits\HasRoles;
     use \Mattiverse\Userstamps\Traits\Userstamps;
     protected $guard_name = 'sanctum';
+
     protected $fillable = [
         'name',
         'username',
         'password',
-        'is_active'
+        'is_active',
+        'branch_id'
     ];
 
 

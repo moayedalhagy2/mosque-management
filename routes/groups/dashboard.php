@@ -1,6 +1,7 @@
 <?php
 
-
+use App\Enums\RoleEnum;
+use App\Helpers\RoleMiddleware;
 use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,20 +11,21 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\MosquesController;
 use App\Http\Controllers\UserController;
 
-use App\Models\Mosque;
 
 
-// Route::prefix('/users')
-//     ->controller(UserController::class)
-//     ->group(function () {
 
-//         Route::post('/',  'store');
-//         Route::get('/',  'index');
-//         Route::get('/{id}',  'show');
-//         Route::get('/{id}/addresses',  'addresses');
-//         Route::get('/{id}/roles', 'roles');
-//         Route::post('/{id}/roles', 'syncRoles');
-//     });
+Route::prefix('/users')
+    ->middleware([RoleMiddleware::append()])
+    ->controller(UserController::class)
+    ->group(function () {
+        Route::post('/',  'store');
+        Route::get('/',  'index');
+        Route::get('/{item}',  'show');
+        Route::put('/{item}',  'update');
+        // Route::delete('/{item}',  'destroy');
+        // Route::get('/{id}/roles', 'roles');
+        // Route::post('/{id}/roles', 'syncRoles');
+    });
 
 
 

@@ -14,6 +14,25 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+
+        $role  = $this->roles->count() > 0 == false ? [] :
+            [
+                "id" => $this->roles[0]->id,
+                "name" => $this->roles[0]->name,
+            ];
+
+
+        return [
+            "id" => $this->id,
+            "name" => $this->name,
+            "username" => $this->username,
+            "is_active" => $this->is_active,
+            "created_at" => $this->created_at,
+            "updated_at" =>  $this->updated_at,
+            "branch" => new BranchResource($this->whenLoaded("branch")),
+            "created_by" => $this->whenLoaded('creator'),
+            "updated_by" => $this->whenLoaded('editor'),
+            "roles" => $role,
+        ];
     }
 }
