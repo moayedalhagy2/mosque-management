@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\RoleEnum;
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Resources\BranchResource;
@@ -91,5 +92,13 @@ class UserController extends Controller
         $item->delete();
 
         return $this->successJson([], 204);
+    }
+
+
+    //enums
+
+    public function rolesEnum()
+    {
+        return $this->successJson(RoleEnum::values());
     }
 }

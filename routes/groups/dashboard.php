@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 
 
 
+Route::get('roles-enum', [UserController::class, 'rolesEnum']);
 
 Route::prefix('/users')
     ->middleware([RoleMiddleware::append()])
