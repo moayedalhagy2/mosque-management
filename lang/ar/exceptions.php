@@ -17,4 +17,5 @@ return [
     'update-password-forbidden' => 'لايمكنك تعديل كلمة المرور لانك سجلت دخول عبر خدمة خارجية',
     'branch-id-required' => 'انت حالياً غير تابع الى فرع , يجب ان تدخل معرف الفرع',
     'use-your-branch-only' => 'يمكنك إنشاء سجلات لفرعك فقط',
+    'account-suspended' => 'تم تعليق حسابك',
 ];

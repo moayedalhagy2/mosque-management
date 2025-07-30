@@ -4,6 +4,7 @@ use App\Exceptions\ApiLevelException;
 
 use App\Http\Middleware\CheckBranchMiddleware;
 use App\Http\Middleware\ForceJsonAcceptHeaderMiddleware;
+use App\Http\Middleware\IsActiveAccountMiddleware;
 use App\Http\Middleware\SetAppLocalMiddleware;
 use App\Http\Middleware\TokenFromCookieMiddleware;
 use App\Services\ExceptionService;
@@ -31,11 +32,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api/auth')
                 ->group(base_path('routes/groups/auth.php'));
 
-            Route::middleware(['api', 'auth:sanctum'])
+            Route::middleware(['api', 'auth:sanctum', 'is_active'])
                 ->prefix('api')
                 ->group(base_path('routes/groups/client.php'));
 
-            Route::middleware(['api',  'auth:sanctum'])
+            Route::middleware(['api',  'auth:sanctum', 'is_active'])
                 ->prefix('api/dashboard')
                 ->group(base_path('routes/groups/dashboard.php'));
         }
@@ -46,11 +47,14 @@ return Application::configure(basePath: dirname(__DIR__))
             SetAppLocalMiddleware::class,
             TokenFromCookieMiddleware::class,
 
-
         ]);
 
         $middleware->alias([
             'check.branch' => CheckBranchMiddleware::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'is_active' => IsActiveAccountMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

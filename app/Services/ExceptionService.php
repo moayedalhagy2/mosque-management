@@ -206,9 +206,9 @@ class ExceptionService
             details: [],
         );
     }
-    public static function useYourBranchOnly()
+    public static function accountSuspended()
     {
-        $key = 'use-your-branch-only';
+        $key = 'account-suspended';
 
         $trans_key = sprintf("%s.%s", self::ERROR_FILE, $key);
 
