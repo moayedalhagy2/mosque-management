@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             "created_by" => $this->whenLoaded('creator'),
             "updated_by" => $this->whenLoaded('editor'),
             "roles" => $role,
+            'auth' => $this->whenNotNull($this->auth),
         ];
     }
 }
