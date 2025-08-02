@@ -37,6 +37,13 @@ class StoreMosqueRequest extends FormRequest
 
         return [
             "name" => ['required'],
+            'district_id' => ['required',  Rule::exists('districts', 'id')
+                ->where(function ($query) use ($branchId) {
+                    $query->where('branch_id', $branchId);
+                })],
+            "cirty_or_village" => ['required'],
+            "is_active" => ['required', 'boolean'],
+            "support_friday" => ['required', 'boolean'],
             'current_status' => ['required', Rule::in(MosqueBuildingStatusEnum::values())],
             'technical_status' => ['required', Rule::in(MosqueConditionEnum::values())],
             'category' => ['required', Rule::in(MosqueCategoryEnum::values())],
@@ -48,10 +55,7 @@ class StoreMosqueRequest extends FormRequest
             'description' => ['sometimes'],
             'latitude' => ['sometimes'],
             'longitude' => ['sometimes'],
-            'district_id' => ['required',  Rule::exists('districts', 'id')
-                ->where(function ($query) use ($branchId) {
-                    $query->where('branch_id', $branchId);
-                })],
+
 
         ];
     }

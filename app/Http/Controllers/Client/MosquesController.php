@@ -30,12 +30,31 @@ class MosquesController extends Controller
                 AllowedFilter::exact('category'),
                 AllowedFilter::exact('current_status'),
                 AllowedFilter::exact('technical_status'),
+                AllowedFilter::exact('mosque_attachments'),
+                AllowedFilter::exact('demolition_percentage'),
+                AllowedFilter::exact('destruction_status'),
+                AllowedFilter::exact('is_active'),
+                AllowedFilter::exact('support_friday'),
                 'name',
+                'cirty_or_village',
+                'branch.name',
+                'branch.id',
                 'district.name',
                 'district.id',
                 'types.type'
             ])
-            ->allowedSorts(['id', 'created_at', 'category', 'current_status', 'technical_status'])
+            ->allowedSorts([
+                'id',
+                'created_at',
+                'category',
+                'is_active',
+                'support_friday',
+                'current_status',
+                'technical_status',
+                'mosque_attachments',
+                'demolition_percentage',
+                'destruction_status',
+            ])
             ->with(['district', 'types']);
 
 

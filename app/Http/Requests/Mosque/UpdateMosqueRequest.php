@@ -37,6 +37,13 @@ class UpdateMosqueRequest extends FormRequest
 
         return [
             "name" => ['sometimes'],
+            'district_id' => ['sometimes',  Rule::exists('districts', 'id')
+                ->where(function ($query) use ($branchId) {
+                    $query->where('branch_id', $branchId);
+                })],
+            "cirty_or_village" => ['sometimes'],
+            "is_active" => ['sometimes', 'boolean'],
+            "support_friday" => ['sometimes', 'boolean'],
             'current_status' => ['sometimes', Rule::in(MosqueBuildingStatusEnum::values())],
             'technical_status' => ['sometimes', Rule::in(MosqueConditionEnum::values())],
             'category' => ['sometimes', Rule::in(MosqueCategoryEnum::values())],
@@ -48,10 +55,7 @@ class UpdateMosqueRequest extends FormRequest
             'description' => ['sometimes'],
             'latitude' => ['sometimes'],
             'longitude' => ['sometimes'],
-            'district_id' => ['sometimes',  Rule::exists('districts', 'id')
-                ->where(function ($query) use ($branchId) {
-                    $query->where('branch_id', $branchId);
-                })],
+
 
         ];
     }

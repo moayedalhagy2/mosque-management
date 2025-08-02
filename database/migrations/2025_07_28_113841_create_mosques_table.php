@@ -25,12 +25,17 @@ return new class extends Migration
             $table->string('name');
             $table->foreignIdFor(Branch::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(District::class)->constrained()->cascadeOnDelete();
+            $table->string('cirty_or_village');
+
             $table->enum('category', MosqueCategoryEnum::values());
             $table->enum('current_status', MosqueBuildingStatusEnum::values());
             $table->enum('technical_status', MosqueConditionEnum::values());
             $table->enum('mosque_attachments', MosqueAttachmentsEnum::values());
             $table->enum('demolition_percentage', MosqueDemolitionPercentageEnum::values());
             $table->enum('destruction_status', MosqueDestructionStatusEnum::values());
+
+            $table->boolean('is_active');
+            $table->boolean('support_friday');
 
             $table->text('description')->nullable();
             // Location coordinates
@@ -42,6 +47,9 @@ return new class extends Migration
             $table->index('category');
             $table->index('current_status');
             $table->index('technical_status');
+            $table->index('mosque_attachments');
+            $table->index('demolition_percentage');
+            $table->index('destruction_status');
         });
     }
 
