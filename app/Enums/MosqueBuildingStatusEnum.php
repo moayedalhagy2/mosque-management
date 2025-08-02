@@ -12,8 +12,8 @@ enum MosqueBuildingStatusEnum: string
     case RENOVATED = 'تم ترميمه';
     case UNDER_CONSTRUCTION = 'قيد البناء';
     case BUILT = 'تم بناؤه';
-    case OTHER_TWAIF_ACTIVE = 'طوائف أخرى مفعل';
-    case OTHER_TWAIF_INACTIVE = 'طوائف أخرى غير مفعل';
+    case OTHER_DENOMINATIONS_ACTIVE = 'طوائف أخرى مفعل';
+    case OTHER_DENOMINATIONS_INACTIVE = 'طوائف أخرى غير مفعل';
 
     public static function values(): array
     {
