@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\WorkerEducationalLevelEnum;
 use App\Enums\WorkerJobStatusEnum;
 use App\Enums\WorkerJobTitleEnum;
+use App\Enums\WorkerQuranHifzLevelEnum;
+use App\Enums\WorkerSponsorshipTypeEnum;
 use App\Http\Requests\Worker\StoreWorkerRequest;
 use App\Http\Requests\Worker\UpdateWorkerRequest;
 use App\Http\Resources\WrapCollection;
@@ -106,5 +109,18 @@ class WorkerController extends Controller
     public function jobStatusEnum()
     {
         return $this->successJson(WorkerJobStatusEnum::values());
+    }
+
+    public function quranLevelEnum()
+    {
+        return $this->successJson(WorkerQuranHifzLevelEnum::values());
+    }
+    public function sponsorshipType()
+    {
+        return $this->successJson(WorkerSponsorshipTypeEnum::values());
+    }
+    public function educationalLevel()
+    {
+        return $this->successJson(WorkerEducationalLevelEnum::values());
     }
 }

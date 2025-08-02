@@ -5,6 +5,7 @@
 use App\Http\Controllers\Client\DisrtictsController as ClientDisrtictsController;
 use App\Http\Controllers\Client\MosquesController as ClientMosquesController;
 use App\Http\Controllers\Client\WorkerController as ClientWorkerController;
+use App\Http\Controllers\WorkerController as DashboardWorkerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,7 +39,18 @@ Route::prefix('/workers')
         Route::post('/{item}', 'update');
         Route::post('/', 'store');
         Route::delete('/{item}', 'destroy');
+    });
 
-        Route::get('/enums/job-titles', 'jobTitlesEnum');
-        Route::get('/enums/job-status', 'jobStatusEnum');
+
+
+
+
+Route::prefix('/workers/enums')
+    ->controller(DashboardWorkerController::class)
+    ->group(function () {
+        Route::get('/job-titles', 'jobTitlesEnum');
+        Route::get('/job-status', 'jobStatusEnum');
+        Route::get('/quran-levels', 'quranLevelEnum');
+        Route::get('/sponsorship-types', 'sponsorshipType');
+        Route::get('/educational-level', 'educationalLevel');
     });

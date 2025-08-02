@@ -2,13 +2,15 @@
 
 namespace App\Enums;
 
+//الوضع الوظيفي
 enum WorkerJobStatusEnum: string
 {
-    case PERMANENT = 'دائم';
-    case CONTRACT = 'متعاقد';
-    case VOLUNTEER = 'متطوع';
-    case TEMPORARY = 'مؤقت';
 
+    case ACTIVE = 'قائم على رأس عمله';
+    case RESIGNED = 'استقالة';
+    case ON_LEAVE = 'إجازة';
+    case TEMPORARILY_SUSPENDED = 'مفصول مؤقت';
+    case TERMINATED = 'مفصول نهائي';
 
 
     public static function values(): array
