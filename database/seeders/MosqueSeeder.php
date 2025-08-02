@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MosqueAttachmentsEnum;
 use App\Enums\MosqueBuildingStatusEnum;
 use App\Enums\MosqueCategoryEnum;
 use App\Enums\MosqueConditionEnum;
+use App\Enums\MosqueDemolitionPercentageEnum;
+use App\Enums\MosqueDestructionStatusEnum;
 use App\Enums\MosqueTypeEnum;
 use App\Models\Branch;
 use App\Models\Mosque;
@@ -31,6 +34,9 @@ class MosqueSeeder extends Seeder
             'category' => MosqueCategoryEnum::A,
             'current_status' => MosqueBuildingStatusEnum::BUILT,
             'technical_status' => MosqueConditionEnum::EXCELLENT,
+            'mosque_attachments' => MosqueAttachmentsEnum::SODA_AND_BASEMENT,
+            'demolition_percentage' => MosqueDemolitionPercentageEnum::NONE,
+            'destruction_status' => MosqueDestructionStatusEnum::NONE,
             'latitude' => 33.84231,
             'longitude' => 34.62145,
         ])
@@ -48,6 +54,9 @@ class MosqueSeeder extends Seeder
             'category' => MosqueCategoryEnum::C,
             'current_status' => MosqueBuildingStatusEnum::UNDER_CONSTRUCTION,
             'technical_status' => MosqueConditionEnum::FAIR,
+            'mosque_attachments' => MosqueAttachmentsEnum::SODA,
+            'demolition_percentage' => MosqueDemolitionPercentageEnum::HALF_50,
+            'destruction_status' => MosqueDestructionStatusEnum::PARTIALLY_DEMOLISHED,
             'latitude' => 33.11131,
             'longitude' => 34.66145,
         ])
@@ -64,6 +73,9 @@ class MosqueSeeder extends Seeder
             'category' => MosqueCategoryEnum::D,
             'current_status' => MosqueBuildingStatusEnum::BUILT,
             'technical_status' => MosqueConditionEnum::FAIR,
+            'mosque_attachments' => MosqueAttachmentsEnum::SODA_AND_BASEMENT,
+            'demolition_percentage' => MosqueDemolitionPercentageEnum::HALF_50,
+            'destruction_status' => MosqueDestructionStatusEnum::PARTIALLY_DEMOLISHED,
             'latitude' => 33.11131,
             'longitude' => 34.66145,
         ])
@@ -80,6 +92,9 @@ class MosqueSeeder extends Seeder
             'category' => MosqueCategoryEnum::A,
             'current_status' => MosqueBuildingStatusEnum::READY,
             'technical_status' => MosqueConditionEnum::POOR,
+            'mosque_attachments' => MosqueAttachmentsEnum::BASEMENT,
+            'demolition_percentage' => MosqueDemolitionPercentageEnum::FULL_100,
+            'destruction_status' => MosqueDestructionStatusEnum::FULLY_DEMOLISHED,
             'latitude' => 33.13431,
             'longitude' => 34.63442,
         ])
