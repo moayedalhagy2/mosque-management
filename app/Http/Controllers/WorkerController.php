@@ -115,11 +115,11 @@ class WorkerController extends Controller
     {
         return $this->successJson(WorkerQuranHifzLevelEnum::values());
     }
-    public function sponsorshipType()
+    public function sponsorshipTypeEnum()
     {
         return $this->successJson(WorkerSponsorshipTypeEnum::values());
     }
-    public function educationalLevel()
+    public function educationalLevelEnum()
     {
         return $this->successJson(WorkerEducationalLevelEnum::values());
     }

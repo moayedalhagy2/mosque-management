@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\MosqueAttachmentsEnum;
 use App\Enums\MosqueBuildingStatusEnum;
 use App\Enums\MosqueCategoryEnum;
 use App\Enums\MosqueConditionEnum;
+use App\Enums\MosqueDemolitionPercentageEnum;
+use App\Enums\MosqueDestructionStatusEnum;
 use App\Enums\MosqueTypeEnum;
 use App\Http\Requests\Mosque\StoreMosqueRequest;
 use App\Http\Requests\Mosque\UpdateMosqueRequest;
@@ -124,5 +127,17 @@ class MosquesController extends Controller
     public function typeEnum()
     {
         return $this->successJson(MosqueTypeEnum::values());
+    }
+    public function buildAttachmentsEnum()
+    {
+        return $this->successJson(MosqueAttachmentsEnum::values());
+    }
+    public function demolitionPercentageEnum()
+    {
+        return $this->successJson(MosqueDemolitionPercentageEnum::values());
+    }
+    public function destructionStatusEnum()
+    {
+        return $this->successJson(MosqueDestructionStatusEnum::values());
     }
 }

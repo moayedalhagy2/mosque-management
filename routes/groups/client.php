@@ -4,6 +4,7 @@
 
 use App\Http\Controllers\Client\DisrtictsController as ClientDisrtictsController;
 use App\Http\Controllers\Client\MosquesController as ClientMosquesController;
+use App\Http\Controllers\MosquesController as DashboardMosqueController;
 use App\Http\Controllers\Client\WorkerController as ClientWorkerController;
 use App\Http\Controllers\WorkerController as DashboardWorkerController;
 use Illuminate\Support\Facades\Route;
@@ -22,13 +23,22 @@ Route::prefix('/mosques')
         Route::get('/{item}', 'show');
         Route::put('/{item}', 'update');
         Route::post('/', 'store');
-
-        //enums
-        Route::get('/enums/current-status', 'currentStatusEnum');
-        Route::get('/enums/category', 'categoryEnum');
-        Route::get('/enums/technical-status', 'technicalStatusEnum');
-        Route::get('/enums/type', 'typeEnum');
     });
+
+
+
+Route::prefix('/mosques/enums')
+    ->controller(DashboardMosqueController::class)
+    ->group(function () {
+        Route::get('/current-status', 'currentStatusEnum');
+        Route::get('/category', 'categoryEnum');
+        Route::get('/technical-status', 'technicalStatusEnum');
+        Route::get('/type', 'typeEnum');
+        Route::get('/mosque-attachments', 'buildAttachmentsEnum');
+        Route::get('/demolition-percentage', 'demolitionPercentageEnum');
+        Route::get('/destruction-status', 'destructionStatusEnum');
+    });
+
 
 
 Route::prefix('/workers')
@@ -51,6 +61,6 @@ Route::prefix('/workers/enums')
         Route::get('/job-titles', 'jobTitlesEnum');
         Route::get('/job-status', 'jobStatusEnum');
         Route::get('/quran-levels', 'quranLevelEnum');
-        Route::get('/sponsorship-types', 'sponsorshipType');
-        Route::get('/educational-level', 'educationalLevel');
+        Route::get('/sponsorship-types', 'sponsorshipTypeEnum');
+        Route::get('/educational-level', 'educationalLevelEnum');
     });

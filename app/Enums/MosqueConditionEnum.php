@@ -1,16 +1,17 @@
-<?php 
- 
- 
+<?php
+
+
 namespace App\Enums;
 
 // الحالة الفنية للمسجد
 
 enum MosqueConditionEnum: string
 {
-    case POOR = 'ضعيفة';
-    case FAIR = 'متوسطة';
-    case GOOD = 'جيدة';
     case EXCELLENT = 'ممتازة';
+    case GOOD = 'جيدة';
+    case FAIR = 'متوسطة';
+    case POOR = 'ضعيفة';
+    case VERY_POOR = 'ضعيفة جدا';
 
     public static function values(): array
     {

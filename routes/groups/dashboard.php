@@ -68,6 +68,9 @@ Route::prefix('/mosques')
         Route::get('/enums/category', 'categoryEnum');
         Route::get('/enums/technical-status', 'technicalStatusEnum');
         Route::get('/enums/type', 'typeEnum');
+        Route::get('/enums/mosque-attachments', 'buildAttachmentsEnum');
+        Route::get('/enums/demolition-percentage', 'demolitionPercentageEnum');
+        Route::get('/enums/destruction-status', 'destructionStatusEnum');
     });
 
 
@@ -83,6 +86,6 @@ Route::prefix('/workers')
         Route::get('/enums/job-titles', 'jobTitlesEnum');
         Route::get('/enums/job-status', 'jobStatusEnum');
         Route::get('/enums/quran-levels', 'quranLevelEnum');
-        Route::get('/enums/sponsorship-types', 'sponsorshipType');
-        Route::get('/enums/educational-level', 'educationalLevel');
+        Route::get('/enums/sponsorship-types', 'sponsorshipTypeEnum');
+        Route::get('/enums/educational-level', 'educationalLevelEnum');
     });
