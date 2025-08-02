@@ -18,6 +18,9 @@ class Worker extends Model implements HasMedia
         'mosque_id',
         'job_title',
         'job_status',
+        'quran_levels',
+        'sponsorship_types',
+        'educational_level',
         'created_at',
         'updated_at',
     ];

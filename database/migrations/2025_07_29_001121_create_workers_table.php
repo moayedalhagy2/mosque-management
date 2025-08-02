@@ -1,7 +1,10 @@
 <?php
 
+use App\Enums\WorkerEducationalLevelEnum;
 use App\Enums\WorkerJobStatusEnum;
 use App\Enums\WorkerJobTitleEnum;
+use App\Enums\WorkerQuranHifzLevelEnum;
+use App\Enums\WorkerSponsorshipTypeEnum;
 use App\Models\Mosque;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +23,10 @@ return new class extends Migration
             $table->enum('job_title', WorkerJobTitleEnum::values());
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->enum('job_status', WorkerJobStatusEnum::values())->nullable();
+            $table->enum('job_status', WorkerJobStatusEnum::values());
+            $table->enum('quran_levels', WorkerQuranHifzLevelEnum::values());
+            $table->enum('sponsorship_types', WorkerSponsorshipTypeEnum::values());
+            $table->enum('educational_level', WorkerEducationalLevelEnum::values());
             $table->userstamps();
             $table->timestamps();
         });
