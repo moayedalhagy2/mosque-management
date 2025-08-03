@@ -37,7 +37,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('api')
                 ->group(base_path('routes/groups/client.php'));
 
-            Route::middleware(['api',  'auth:sanctum', 'is_active'])
+            Route::middleware(['api',  'auth:sanctum', 'is_active', RoleMiddleware::append(RoleEnum::BRANCH_MANAGER, RoleEnum::SUPERVISOR)])
                 ->prefix('api/dashboard')
                 ->group(base_path('routes/groups/dashboard.php'));
         }

@@ -11,7 +11,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\MosquesController;
 use App\Http\Controllers\UserController;
 
-
+Route::get('/profile', [UserController::class, 'profile']);
 
 Route::get('roles-enum', [UserController::class, 'rolesEnum']);
 
@@ -32,7 +32,7 @@ Route::prefix('/users')
 
 
 
-Route::get('/profile', [UserController::class, 'profile']);
+
 
 Route::prefix('/branches')
     ->controller(BranchController::class)
@@ -50,9 +50,11 @@ Route::prefix('/districts')
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{item}', 'show');
-        Route::put('/{item}', 'update');
         Route::post('/', 'store');
-        Route::delete('/{item}', 'destroy');
+        Route::put('/{item}', 'update')
+            ->middleware([RoleMiddleware::append(RoleEnum::SUPERVISOR)]);
+        Route::delete('/{item}', 'destroy')
+            ->middleware([RoleMiddleware::append()]);
     });
 
 Route::prefix('/mosques')
@@ -60,9 +62,9 @@ Route::prefix('/mosques')
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{item}', 'show');
-        Route::put('/{item}', 'update');
         Route::post('/', 'store');
-        Route::delete('/{item}', 'destroy');
+        Route::put('/{item}', 'update')->middleware([RoleMiddleware::append(RoleEnum::SUPERVISOR)]);
+        Route::delete('/{item}', 'destroy')->middleware([RoleMiddleware::append(RoleEnum::SUPERVISOR)]);
 
         Route::get('/enums/current-status', 'currentStatusEnum');
         Route::get('/enums/category', 'categoryEnum');
@@ -79,9 +81,9 @@ Route::prefix('/workers')
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{item}', 'show');
-        Route::post('/{item}', 'update');
         Route::post('/', 'store');
-        Route::delete('/{item}', 'destroy');
+        Route::post('/{item}', 'update')->middleware([RoleMiddleware::append(RoleEnum::SUPERVISOR)]);
+        Route::delete('/{item}', 'destroy')->middleware([RoleMiddleware::append(RoleEnum::SUPERVISOR)]);
 
         Route::get('/enums/job-titles', 'jobTitlesEnum');
         Route::get('/enums/job-status', 'jobStatusEnum');

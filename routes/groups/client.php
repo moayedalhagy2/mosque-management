@@ -21,7 +21,7 @@ Route::prefix('/mosques')
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{item}', 'show');
-        Route::put('/{item}', 'update');
+        // Route::put('/{item}', 'update');
         Route::post('/', 'store');
     });
 
@@ -46,9 +46,9 @@ Route::prefix('/workers')
     ->group(function () {
         Route::get('/', 'index');
         Route::get('/{item}', 'show');
-        Route::post('/{item}', 'update');
+        // Route::post('/{item}', 'update');
         Route::post('/', 'store');
-        Route::delete('/{item}', 'destroy');
+        // Route::delete('/{item}', 'destroy');
     });
 
 
