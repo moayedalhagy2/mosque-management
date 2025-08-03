@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use App\Enums\RoleEnum;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Laravel\Sanctum\HasApiTokens;
@@ -32,6 +32,15 @@ class User extends Authenticatable
 
     ];
 
+
+    public function isAnyAdmin()
+    {
+        return $this->hasAnyRole([
+            RoleEnum::BRANCH_MANAGER,
+            RoleEnum::SUPERVISOR,
+            RoleEnum::SYSTEM_ADMINISTRATOR
+        ]);
+    }
 
     protected function casts(): array
     {

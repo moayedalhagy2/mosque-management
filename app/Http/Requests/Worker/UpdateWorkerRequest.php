@@ -38,7 +38,7 @@ class UpdateWorkerRequest extends FormRequest
 
         $workerId = $this->route('item')?->id; // للتعديل فقط
 
-
+        $isNotAnyAdmin = fn() =>   request()->user()->isAnyAdmin() == false;
 
         return [
 
@@ -49,6 +49,9 @@ class UpdateWorkerRequest extends FormRequest
             "name" => ['required'],
             "phone" => ['sometimes', 'unique:workers,phone'],
             'image' => ['sometimes',  'image', 'mimes:jpeg,jpg,png,webp', 'max:2048'],
+            'salary' => ['sometimes',  'decimal:0,2', Rule::prohibitedIf($isNotAnyAdmin)],
+            'salary_sy' => ['sometimes',  'decimal:0,2', Rule::prohibitedIf($isNotAnyAdmin)],
+            'sham_cash' => ['sometimes',  'string', Rule::prohibitedIf($isNotAnyAdmin)],
             'job_status' => ['sometimes', Rule::in(WorkerJobStatusEnum::values())],
             'quran_levels' => ['sometimes', Rule::in(WorkerQuranHifzLevelEnum::values())],
             'sponsorship_types' => ['sometimes', Rule::in(WorkerSponsorshipTypeEnum::values())],

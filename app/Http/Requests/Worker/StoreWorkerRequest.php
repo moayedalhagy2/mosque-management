@@ -22,17 +22,16 @@ class StoreWorkerRequest extends FormRequest
         return true;
     }
     protected $stopOnFirstFailure = true;
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
+
     public function rules(): array
     {
         $branchId = auth()->user()->branch_id ??
             (request()->has('branch_id') ?
                 request()->branch_id
                 :  ExceptionService::branchIdRequired());
+
+        $isNotAnyAdmin = fn() =>   request()->user()->isAnyAdmin() == false;
 
         return [
             'mosque_id' => ['required',  Rule::exists('mosques', 'id')
@@ -42,6 +41,9 @@ class StoreWorkerRequest extends FormRequest
             "name" => ['required'],
             "phone" => ['sometimes', 'unique:workers,phone'],
             'image' => ['sometimes',  'image', 'mimes:jpeg,jpg,png,webp', 'max:2048'],
+            'salary' => ['sometimes',  'decimal:0,2', Rule::prohibitedIf($isNotAnyAdmin)],
+            'salary_sy' => ['sometimes',  'decimal:0,2', Rule::prohibitedIf($isNotAnyAdmin)],
+            'sham_cash' => ['sometimes',  'string', Rule::prohibitedIf($isNotAnyAdmin)],
             'job_status' => ['required', Rule::in(WorkerJobStatusEnum::values())],
             'quran_levels' => ['required', Rule::in(WorkerQuranHifzLevelEnum::values())],
             'sponsorship_types' => ['required', Rule::in(WorkerSponsorshipTypeEnum::values())],

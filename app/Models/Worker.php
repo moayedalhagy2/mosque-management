@@ -21,9 +21,13 @@ class Worker extends Model implements HasMedia
         'quran_levels',
         'sponsorship_types',
         'educational_level',
+        'salary',
+        'sham_cash',
+        'salary_sy',
         'created_at',
         'updated_at',
     ];
+
 
 
     //InteractsWithMedia

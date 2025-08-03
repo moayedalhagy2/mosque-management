@@ -27,6 +27,9 @@ return new class extends Migration
             $table->enum('quran_levels', WorkerQuranHifzLevelEnum::values());
             $table->enum('sponsorship_types', WorkerSponsorshipTypeEnum::values());
             $table->enum('educational_level', WorkerEducationalLevelEnum::values());
+            $table->decimal('salary', 12, 2)->nullable();
+            $table->decimal('salary_sy', 12, 2)->nullable();
+            $table->string('sham_cash')->nullable();
             $table->userstamps();
             $table->timestamps();
         });
