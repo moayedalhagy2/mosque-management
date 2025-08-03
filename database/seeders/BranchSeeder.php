@@ -14,24 +14,66 @@ class BranchSeeder extends Seeder
     public function run(): void
     {
         $governorates = [
-            'دمشق',
-            'ريف دمشق',
-            'حلب',
-            'حمص',
-            'حماة',
-            'اللاذقية',
-            'طرطوس',
-            'إدلب',
-            'درعا',
-            'القنيطرة',
-            'السويداء',
-            'دير الزور',
-            'الرقة',
-            'الحسكة'
+            [
+                "name" => 'دمشق',
+                'code' => 'SY01'
+            ],
+            [
+                "name" => 'ريف دمشق',
+                'code' => 'SY03'
+            ],
+            [
+                "name" => 'حلب',
+                'code' => 'SY02'
+            ],
+            [
+                "name" => 'حمص',
+                'code' => 'SY04'
+            ],
+            [
+                "name" => 'حماة',
+                'code' => 'SY05'
+            ],
+            [
+                "name" => 'اللاذقية',
+                'code' => 'SY06'
+            ],
+            [
+                "name" => 'طرطوس',
+                'code' => 'SY10'
+            ],
+            [
+                "name" => 'إدلب',
+                'code' => 'SY07'
+            ],
+            [
+                "name" => 'درعا',
+                'code' => 'SY12'
+            ],
+            [
+                "name" => 'القنيطرة',
+                'code' => 'SY14'
+            ],
+            [
+                "name" => 'السويداء',
+                'code' => 'SY13'
+            ],
+            [
+                "name" => 'دير الزور',
+                'code' => 'SY09'
+            ],
+            [
+                "name" => 'الرقة',
+                'code' => 'SY11'
+            ],
+            [
+                "name" => 'الحسكة',
+                'code' => 'SY08'
+            ]
         ];
 
-        foreach ($governorates as $name) {
-           Branch::create(['name' => $name]);
+        foreach ($governorates as $item) {
+            Branch::create($item);
         }
     }
 }

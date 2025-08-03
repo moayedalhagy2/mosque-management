@@ -31,13 +31,16 @@ class WorkerController extends Controller
                 AllowedFilter::exact('quran_levels'),
                 AllowedFilter::exact('sponsorship_types'),
                 AllowedFilter::exact('educational_level'),
+                AllowedFilter::exact('salary'),
+                AllowedFilter::exact('salary_sy'),
+                AllowedFilter::exact('sham_cash'),
                 'name',
                 'phone',
                 'mosque.name',
                 'mosque.id',
             ])
             ->allowedSorts(['id', 'created_at', 'job_title', 'job_status'])
-            ->with(['mosque', 'creator', 'editor']);
+            ->with(['mosque.district', 'creator', 'editor']);
 
 
         return new WrapCollection($model->paginate($this->pageSize()), WrokerResource::class);

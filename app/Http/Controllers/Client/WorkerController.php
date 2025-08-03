@@ -35,7 +35,7 @@ class WorkerController extends Controller
                 'mosque.id',
             ])
             ->allowedSorts(['id', 'created_at', 'job_title', 'job_status'])
-            ->with(['mosque']);
+            ->with(['mosque.district']);
 
 
         return new WrapCollection($model->paginate($this->pageSize()), WrokerResource::class);

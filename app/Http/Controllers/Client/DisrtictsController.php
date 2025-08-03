@@ -22,6 +22,7 @@ class DisrtictsController extends Controller
         $model = QueryBuilder::for(District::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
+                AllowedFilter::exact('code'),
                 'name',
                 'mosques.name'
             ])

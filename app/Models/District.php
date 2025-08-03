@@ -12,7 +12,8 @@ class District extends Model
     use \App\BranchScopeTrait;
     public $fillable = [
         "branch_id",
-        "name"
+        "name",
+        'code'
     ];
 
     public $timestamps = false;

@@ -18,6 +18,7 @@ class DistrictController extends Controller
         $model = QueryBuilder::for(District::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
+                AllowedFilter::exact('code'),
                 'name',
                 'branch.name',
                 'branch.id',
@@ -52,6 +53,7 @@ class DistrictController extends Controller
 
         $validated = $request->validate([
             'name' => ['required', 'string', 'unique:districts,name,' . request('item')->id],
+            'code' => ['sometimes', 'unique:districts,code,' . request('item')->id]
         ]);
 
         $item->update($validated);
@@ -70,6 +72,7 @@ class DistrictController extends Controller
                 }),
             ],
             'branch_id' => ['required', 'exists:branches,id', 'integer'], // Ensure branch_id exists
+            'code' => ['sometimes', 'unique:districts,code']
         ]);
 
 

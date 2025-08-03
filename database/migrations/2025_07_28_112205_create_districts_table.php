@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Branch::class)->constrained()->cascadeOnDelete();
             $table->string('name', 40);
+            $table->string('code',  10)->nullable();
             $table->userstamps();
 
             $table->unique(['branch_id', 'name'], 'unique_district');

@@ -16,6 +16,7 @@ class BranchController extends Controller
         $model = QueryBuilder::for(Branch::class)
             ->allowedFilters([
                 AllowedFilter::exact('id'),
+                AllowedFilter::exact('code'),
                 'name',
             ])
             ->allowedSorts(['id', 'created_at'])
